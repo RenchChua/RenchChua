@@ -1,0 +1,12 @@
+body{
+  padding: 30px;
+}
+
+.selector{
+  display: inline-block;
+  margin: 10px;
+}
+
+.selected{
+  border: 2px solid red;
+}

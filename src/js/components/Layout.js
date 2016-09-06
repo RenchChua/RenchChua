@@ -2,19 +2,20 @@ import React from "react";
 import ReactDOM from 'react-dom'
 import {connect} from "react-redux"
 
-
 import {fetchTodos, addTodo, deleteTodo, updateTodo} from "../actions/todoActions"
+
 
 import Footer from "./Footer";
 import Header from "./Header";
 
 @connect((store) => {
   return{
-
     fetchTodos: store.todos.fetchTodos,
     updateTodo: store.todos.updateTodo,
     addTodo: store.todos.addTodo,
-    todos: store.todos.todos
+    todos: store.todos.todos,
+    deleteTodo: store.todos.deleteTodo,
+    selection: store.selection.selection,
   }
 })
 
@@ -62,8 +63,16 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    const{user, todos} = this.props;
-    const mappedTodos = todos.map(todo =>
+    const{selection, todos} = this.props;
+    let filteredTodos = todos;
+    if (selection === "All") {
+      filteredTodos = todos
+    }else if (selection === "Active") {
+      filteredTodos = todos.filter(todo => todo.isComplete === false)
+    }else if (selection === "Done") {
+      filteredTodos = todos.filter(todo => todo.isComplete === true)
+    }
+    const mappedTodos = filteredTodos.map(todo =>
                       <li key={todo.id} onClick={this.makeEdit.bind(this)}>
                         <input type="checkbox" className={todo.id} onClick={this.updateComplete.bind(this)}/>
                         {this.showTodo(todo)}
@@ -98,7 +107,7 @@ class EditForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.otherProps);
+    console.log(this.props.otherProps.todos);
     const todoId = parseInt(this.props.id)
     const todoPlaceholderID= this.props.otherProps.todos.findIndex(todo => todo.id === todoId)
 

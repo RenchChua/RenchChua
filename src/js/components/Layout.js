@@ -10,11 +10,11 @@ import Header from "./Header";
 
 @connect((store) => {
   return{
-    fetchTodos: store.todos.fetchTodos,
-    updateTodo: store.todos.updateTodo,
-    addTodo: store.todos.addTodo,
+    // fetchTodos: store.todos.fetchTodos,
+    // updateTodo: store.todos.updateTodo,
+    // addTodo: store.todos.addTodo,
     todos: store.todos.todos,
-    deleteTodo: store.todos.deleteTodo,
+    // deleteTodo: store.todos.deleteTodo,
     selection: store.selection.selection,
   }
 })
@@ -31,9 +31,12 @@ export default class Layout extends React.Component {
   addTodo(e){
     e.preventDefault()
     let text = this.refs.post.value;
-    let id = Date.now();
-    let isComplete = false
-    this.props.dispatch(addTodo(id,text, isComplete))
+    if (text.length !==0) {
+      let id = Date.now();
+      let isComplete = false
+      this.props.dispatch(addTodo(id,text, isComplete))
+      this.refs.post.form.reset();
+    }
   }
 
   deleteTodo(e){
@@ -79,7 +82,7 @@ export default class Layout extends React.Component {
                         <button onClick={this.deleteTodo.bind(this)} id={todo.id}>Delete</button>
                       </li>)
     return (
-      <div>
+      <div id="postTodo">
         <h1>
           You gotta do it do it!
         </h1>

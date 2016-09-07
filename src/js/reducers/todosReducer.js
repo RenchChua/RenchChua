@@ -42,6 +42,14 @@ export default function reducer(state = {
       }
     }
 
+    case "DELETE_DONE":{
+      console.log("clicked");
+      return{
+        ...state,
+        todos: state.todos.filter(todo=> todo.isComplete !==true)
+      }
+    }
+
   }
   return state;
 }

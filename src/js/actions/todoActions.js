@@ -51,3 +51,9 @@ export function deleteTodo(id) {
     payload: id
   }
 }
+
+export function deleteDone() {
+  return{
+    type: 'DELETE_DONE'
+  }
+}

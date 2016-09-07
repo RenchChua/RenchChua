@@ -77,7 +77,8 @@ export default class Layout extends React.Component {
     }
     const mappedTodos = filteredTodos.map(todo =>
                       <li key={todo.id} onClick={this.makeEdit.bind(this)}>
-                        <input type="checkbox" className={todo.id} onClick={this.updateComplete.bind(this)}/>
+                        <input type="checkbox" className={todo.id} onClick={this.updateComplete.bind(this)}
+                        checked={todo.isComplete}/>
                         {this.showTodo(todo)}
                         <button onClick={this.deleteTodo.bind(this)} id={todo.id}>Delete</button>
                       </li>)

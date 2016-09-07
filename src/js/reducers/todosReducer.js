@@ -34,16 +34,14 @@ export default function reducer(state = {
         todos: newTweets
       }
     }
-
     case "DELETE_TODO":{
       return{
         ...state,
         todos: state.todos.filter(todo => todo.id !==action.payload)
       }
     }
-
     case "DELETE_DONE":{
-      console.log("clicked");
+      console.log("clicked from reducer");
       return{
         ...state,
         todos: state.todos.filter(todo=> todo.isComplete !==true)

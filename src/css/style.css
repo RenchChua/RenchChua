@@ -5,6 +5,7 @@ body{
 .selector{
   display: inline-block;
   margin: 10px;
+  cursor: pointer;
 }
 
 .selected{

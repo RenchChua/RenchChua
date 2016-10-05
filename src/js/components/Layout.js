@@ -65,7 +65,7 @@ export default class Layout extends React.Component {
       <div id="postProject">
         <div className="jumbotron ">
           <div>
-            <img className="headshot" src="../public/images/headshot.jpg"/>
+            <img className="headshot" src="./public/images/headshot.jpg"/>
           </div>
           <div className="my-name">
             <h2 className="first-name">Rencheng</h2>

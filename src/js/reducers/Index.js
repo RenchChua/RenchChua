@@ -1,9 +1,7 @@
 import {combineReducers} from "redux"
 
-import todos from "./todosReducer"
-import selection from "./selectorReducer"
+import projects from "./projectsReducer"
 
 export default combineReducers({
-  todos,
-  selection
+  projects,
 })

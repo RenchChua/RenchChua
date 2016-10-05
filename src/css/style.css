@@ -2,12 +2,245 @@ body{
   padding: 30px;
 }
 
-.selector{
-  display: inline-block;
-  margin: 10px;
-  cursor: pointer;
+.jumbotron{
+  border-radius: 8px;
 }
 
-.selected{
-  border: 2px solid red;
+.headshot{
+  margin-top: -10px;
+  margin-bottom: -20px;
+  display: block;
+  margin-left: 50px;
+  height:280px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.my-name{
+  position: absolute;
+  left: 460px;
+  top: 70px;
+}
+
+h2.first-name {
+  font-size: 96px;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+}
+
+h2.last-name {
+  font-size: 96px;
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(0, 72, 255, 0.74);
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.underline{
+  position: absolute;
+  top: 210px;
+  right: 31px;
+  display: block;
+  border: 5px solid blue;
+  width: 680px;
+  border: 5px solid rgba(0, 72, 255, 0.74);
+}
+
+.btn-github-left{
+  display: inline-block;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  width: 50px;
+  background-color: white;
+}
+
+.btn-github-right{
+  display: inline-block;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  position:relative;
+  top: -3px;
+  right: 2px;
+}
+
+.btn-github{
+  position: absolute;
+  color: black;
+  top: 230px;
+  right: 560px;
+}
+
+.btn-github a{
+  text-decoration: none;
+}
+
+.btn-linkedin-left{
+  display: inline-block;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  width: 50px;
+  background-color: white;
+}
+
+.btn-linkedin-right{
+  display: inline-block;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  position:relative;
+  top: -3px;
+  right: 2px;
+}
+
+.btn-linkedin{
+  position: absolute;
+  color: black;
+  top: 230px;
+  right: 378px;
+}
+
+.btn-linkedin a{
+  text-decoration: none;
+}
+
+.btn-email-left{
+  display: inline-block;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  width: 50px;
+  background-color: white;
+}
+
+.btn-email-right{
+  display: inline-block;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  position:relative;
+  top: -3px;
+  right: 2px;
+}
+
+.btn-email{
+  position: absolute;
+  color: black;
+  top: 230px;
+  right: 230px;
+}
+
+.btn-email a{
+  text-decoration: none;
+}
+
+.section-headers h2{
+  margin-top: 20px;
+  margin-left: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.projects-container{
+  margin-left: 30px;
+}
+
+.cards{
+  border: 1px solid #777;
+  border-radius: 8px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+  height: 400px;
+  background-color: #f7f4ef;
+  -webkit-box-shadow: 15px 18px 42px -16px rgba(0,0,0,0.48);
+  -moz-box-shadow: 15px 18px 42px -16px rgba(0,0,0,0.48);
+  box-shadow: 15px 18px 42px -16px rgba(0,0,0,0.48);
+  padding-left: 80px;
+}
+.cards-trigger{
+  display: block;
+  margin-left: -27.9%;
+  width: 133.2%;
+  height: 66%;
+  z-index: 20;
+}
+
+.cards-image{
+  margin-left: -27.9%;
+  width: 133.2%;
+  height: 66%;
+  margin-top: -99%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.cards-name{
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.55), rgba(0,0,0,0.7), rgba(0,0,0,1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.55), rgba(0,0,0,0.7), rgba(0,0,0,1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.55), rgba(0,0,0,0.7), rgba(0,0,0,1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.55), rgba(0,0,0,0.7), rgba(0,0,0,1)); /* Standard syntax */
+  margin-top: -38px;
+  margin-left: -80px;
+  z-index: 1;
+  width: 133%;
+}
+
+.cards-name p{
+  color: white;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.cards-actions{
+  position: relative;
+  display: block;
+  margin-top: 35px;
+  margin-left:-54px;
+}
+
+.cards-actions p{
+  margin-right: 20px;
+  display: inline;
+  font-size: 4rem;
+  font-weight: bolder;
+  color: #2780e3;
+}
+
+.cards-actions a{
+  display: inline;
+  font-size: 4rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-right: 20px;
+}
+
+.cards-hover{
+  display: block;
+  position:absolute;
+  top: 30px;
+  width: 85.4%;
+  height: 61.5%;
+  border: 1px solid #777;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  z-index: -10;
+}
+
+.cards-hover-text{
+  display: block;
+  margin-left: 24px;
+  margin-top: 108px;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }

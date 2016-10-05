@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom'
 import {connect} from "react-redux"
 
-import {fetchTodos, addTodo, deleteTodo, updateTodo} from "../actions/todoActions"
+import {fetchProjects} from "../actions/projectActions"
 
 
 import Footer from "./Footer";
@@ -10,120 +10,91 @@ import Header from "./Header";
 
 @connect((store) => {
   return{
-    // fetchTodos: store.todos.fetchTodos,
-    // updateTodo: store.todos.updateTodo,
-    // addTodo: store.todos.addTodo,
-    todos: store.todos.todos,
-    // deleteTodo: store.todos.deleteTodo,
-    selection: store.selection.selection,
+    projects: store.projects.projects,
   }
 })
 
 export default class Layout extends React.Component {
+  constructor(){
+    super();
+    this._mouseEnter=this._mouseEnter.bind(this);
+    this._mouseLeave=this._mouseLeave.bind(this);
+  }
   componentWillMount() {
-    this.props.dispatch(fetchTodos())
+    this.props.dispatch(fetchProjects())
   }
 
-  fetchTodos(){
-    this.props.dispatch(fetchTodos())
+  _mouseEnter(e){
+    let targetID = "hover-" + e.target.id
+    document.getElementById(targetID).style.backgroundColor = "rgba(0,0,0,0.5)"
+    document.getElementById(targetID).style.zIndex= "10"
+    console.log("entering ", targetID);
   }
 
-  addTodo(e){
-    e.preventDefault()
-    let text = this.refs.post.value;
-    if (text.length !==0) {
-      let id = Date.now();
-      let isComplete = false
-      this.props.dispatch(addTodo(id,text, isComplete))
-      this.refs.post.form.reset();
-    }
-  }
-
-  deleteTodo(e){
-    this.props.dispatch(deleteTodo(parseInt(e.target.id)))
-  }
-
-  makeEdit(e){
-    let todoId = e.target.id
-    var editForm = <EditForm otherProps={this.props} id={todoId}/>
-    ReactDOM.render(editForm, document.getElementById(todoId))
-  }
-
-  updateComplete(e){
-    const updateId = parseInt(e.target.className)
-    const todoToUpdate =  this.props.todos.findIndex(todo =>todo.id === updateId)
-    const updateText = this.props.todos[todoToUpdate].text
-    this.props.dispatch(updateTodo(updateId, updateText, e.target.checked))
-  }
-
-  showTodo(todo) {
-    if (todo.isComplete) {
-      return (<div id={todo.id} style={{display: "inline-block", textDecoration:"line-through"}}>{todo.text}</div>)
-    }else{
-      return(<div id={todo.id} style={{display: "inline-block"}}>{todo.text}</div>)
-    }
-
+  _mouseLeave(e){
+    let targetID = "hover-" + e.target.id
+    document.getElementById(targetID).style.backgroundColor = "rgba(0,0,0,0)"
+    document.getElementById(targetID).style.zIndex= "-10"
+    console.log("leaving ", targetID);
   }
 
   render() {
-    const{selection, todos} = this.props;
-    let filteredTodos = todos;
-    if (selection === "All") {
-      filteredTodos = todos
-    }else if (selection === "Active") {
-      filteredTodos = todos.filter(todo => todo.isComplete === false)
-    }else if (selection === "Done") {
-      filteredTodos = todos.filter(todo => todo.isComplete === true)
+    let cardSytle = {
+      backgroundImage:'url(../../public/images/KindJobs.png)'
     }
-    const mappedTodos = filteredTodos.map(todo =>
-                      <li key={todo.id} onClick={this.makeEdit.bind(this)}>
-                        <input type="checkbox" className={todo.id} onClick={this.updateComplete.bind(this)}
-                        defaultChecked={todo.isComplete}/>
-                        {this.showTodo(todo)}
-                        <button onClick={this.deleteTodo.bind(this)} id={todo.id}>Delete</button>
-                      </li>)
+    const mappedProjects = this.props.projects.map(project =>
+                      <div key={project.id} className="col-md-4 cards-container">
+                        <div className="cards col-md-11">
+                          <div className="cards-trigger col-md-12" id={project.id} onMouseEnter={this._mouseEnter} onMouseLeave={this._mouseLeave}>
+                          </div>
+                          <img className="cards-image" src={project.image}/>
+                          <div className="cards-name col-md-11">
+                            <p> {project.text}</p>
+                          </div>
+                          <div className="cards-actions">
+                            <a href={project.github} target="_blank">Github</a>
+                            <p>|</p>
+                            <a href={project.launch} target="_blank">Launch</a>
+                          </div>
+                        </div>
+                        <div id={"hover-" + project.id} className="cards-hover col-md-11" >
+                          <div className="cards-hover-text">{project.description}</div>
+                        </div>
+                      </div>)
     return (
-      <div id="postTodo">
-        <h1>
-          You gotta do it do it!
-        </h1>
-          <form className="commentForm" onSubmit={this.addTodo.bind(this)}>
-            <input type="text" ref="post" placeholder="Your task"/>
-            <input type="submit" value="post"/>
-          </form>
-          <ul>{mappedTodos}</ul>
+      <div id="postProject">
+        <div className="jumbotron ">
+          <div>
+            <img className="headshot" src="../../public/images/headshot.jpg"/>
+          </div>
+          <div className="my-name">
+            <h2 className="first-name">Rencheng</h2>
+            <h2 className="last-name">Chua</h2>
+          </div>
+          <div className="underline">
+          </div>
+          <a className="btn-github" href="https://github.com/renchChua" target="_blank">
+            <button className="btn-github-left"><i className="fa fa-github fa-2x" aria-hidden="true"></i></button>
+            <button className="btn-github-right">GitHub</button>
+          </a>
+          <a className="btn-linkedin" href="https://www.linkedin.com/in/rencheng-chua-b4959a80" target="_blank">
+            <button className="btn-linkedin-left"><i className="fa fa-linkedin fa-2x" aria-hidden="true"></i></button>
+            <button className="btn-linkedin-right">LinkedIn</button>
+          </a>
+          <a className="btn-email" href="mailto:rench.chua@gmail.com" target="_top">
+            <button className="btn-email-left"><i className="fa fa-envelope fa-2x" aria-hidden="true"></i></button>
+            <button className="btn-email-right">Email</button>
+          </a>
+
+        </div>
+        <div className="section-headers">
+          <h2>My Projects</h2>
+        </div>
+        <div className="projects-container">
+          {mappedProjects}
+        </div>
 
       </div>
     );
-  }
-}
-
-class EditForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { }
-  }
-
-  updateTodo(e){
-    e.preventDefault();
-    const todoId = parseInt(this.props.id)
-    this.props.otherProps.dispatch((updateTodo(todoId, this.refs.post.value)))
-  }
-
-  render() {
-    console.log(this.props.otherProps.todos);
-    const todoId = parseInt(this.props.id)
-    const todoPlaceholderID= this.props.otherProps.todos.findIndex(todo => todo.id === todoId)
-
-    const placeholderText = this.props.otherProps.todos[todoPlaceholderID].text;
-
-    return(
-      <div>
-        <form className="commentForm" onSubmit={this.updateTodo.bind(this)}>
-          <input type="text" ref="post" defaultValue={placeholderText}/>
-          <input type="submit" value="post"/>
-        </form>
-      </div>
-    )
   }
 }
